@@ -1,3 +1,6 @@
+.venv
+data
+ml-100k.zip
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
