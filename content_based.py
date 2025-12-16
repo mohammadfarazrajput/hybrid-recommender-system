@@ -1,7 +1,7 @@
 from sklearn.metrics.pairwise import cosine_similarity
 
 def content_based(movie_index, movie_data,titles, top_n_recommedation = 5):
-    similar_matrix = cosine_similarity(movie_data.iloc[[movie_index]],movie_data)  
+    similar_matrix = cosine_similarity(movie_data.loc[[movie_index-1]],movie_data)  
     indexed_scores = list(enumerate(similar_matrix[0]))
     sorted_recommedations = sorted(
         indexed_scores,

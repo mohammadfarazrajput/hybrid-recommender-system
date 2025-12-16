@@ -54,7 +54,41 @@ hybrid_recommender/
 5. Given a movie, the system returns the **top-N most similar movies**, excluding the movie itself.
 
 ---
+Here is your project description formatted in clean, professional Markdown.
 
+---
+
+# FunkSVD (Matrix Factorization Recommender)
+
+This project includes an implementation of **FunkSVD**, a matrix factorization–based collaborative filtering algorithm trained using stochastic gradient descent (SGD).
+
+## Overview 
+* **Latent Representations:** Learns latent representations for users and items.
+* **Rating Prediction:** Predicts ratings via the dot product of latent vectors.
+* **Sparse Data Handling:** Trains directly on sparse rating data (no pivot tables required).
+* **Scalability:** Scales better than memory-based collaborative filtering approaches.
+
+## Key Features 
+* **Efficient Indexing:** User–item ID mapping for efficient lookups.
+* **Initialization:** Random latent factor initialization.
+* **Optimization:** SGD-based optimization with regularization.
+* **Evaluation:** RMSE-based evaluation on held-out test data.
+* **Personalization:** Recommendation of unseen items for a given user.
+
+## Evaluation
+* **Dataset:** MovieLens 100K
+* **Metric:** RMSE (Root Mean Square Error)
+* **Result:** ~1.05 RMSE (baseline FunkSVD without bias terms)
+
+## Status
+* ✅ **Content-Based Recommender**
+* ✅ **Item-Based Collaborative Filtering**
+* ✅ **FunkSVD (Matrix Factorization)**
+* ⏳ **Bias terms** *(pending)*
+* ⏳ **Hybrid recommender** *(content + CF + SVD)*
+
+> **Note:** This FunkSVD module serves as the core personalization engine for the upcoming hybrid recommendation system.
+---
 ## 🚀 How to Run
 
 ### 1️⃣ Install dependencies
