@@ -17,7 +17,7 @@ def compute_item_similarity(user_item_matrix):
 def recommend_items_item_based(user_id, rating_df, item_similarity, top_k=5):
     reviewed_movies = rating_df.loc[user_id].dropna()
     score = {}
-    for item, rating in reviewed_movies.items():
+    for item, rating in reviewed_movies.items():    
         candidate_movies_score = item_similarity[item]
         for candidate_movies, similarity in candidate_movies_score.items():
             if pd.isna(rating_df.loc[user_id,candidate_movies]):
