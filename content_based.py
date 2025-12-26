@@ -1,15 +1,15 @@
 from sklearn.metrics.pairwise import cosine_similarity
+import numpy as np
 
-def content_based(movie_index, movie_data,titles, top_n_recommedation = 5):
-    similar_matrix = cosine_similarity(movie_data.loc[[movie_index-1]],movie_data)  
-    indexed_scores = list(enumerate(similar_matrix[0]))
-    sorted_recommedations = sorted(
-        indexed_scores,
-        key=lambda x: x[1],
-        reverse=True
-    )[1:top_n_recommedation + 1]   # skip self
+def content_based(movie_index, feature_df, top_n=50):
+    movie_vec = feature_df.iloc[[movie_index]]
+    similarity = cosine_similarity(movie_vec, feature_df)[0]
 
-    recommedation_index = [idx for idx, score in sorted_recommedations]
-    final_recommendation = titles.iloc[recommedation_index].reset_index(drop =True)
-    print("The Recommedations are:\n")
-    return final_recommendation
+    scores = {
+        idx: score
+        for idx, score in enumerate(similarity)
+        if idx != movie_index
+    }
+
+    sorted_scores = sorted(scores.items(), key=lambda x: x[1], reverse=True)
+    return dict(sorted_scores[:top_n])

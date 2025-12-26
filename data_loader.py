@@ -1,21 +1,24 @@
 import pandas as pd
 
-class MoviesLensLoader():
-    def __init__(self):
-        self.base = "data/raw/ml-100k/"
-    
+class MoviesLensLoader:
+    def __init__(self, base_path="data/raw/ml-100k/"):
+        self.base = base_path
+
     def load_rating(self):
-        columns = ["user_id", "item_id", "rating", "timestamp"]
-        ratings = pd.read_csv(f"{self.base}u.data", sep="\t", names=columns)
-        return ratings
-    
+        cols = ["user_id", "item_id", "rating", "timestamp"]
+        return pd.read_csv(f"{self.base}u.data", sep="\t", names=cols)
+
     def load_items(self):
-        columns = ["item_id", "title", "release_date", "video_release", "imdb_url"] + [f"genre_{i}" for i in range(19)]
-        items = pd.read_csv(f"{self.base}u.item", sep="|", names=columns, encoding="latin-1")
-        return items
-    
+        cols = (
+            ["item_id", "title", "release_date", "video_release", "imdb_url"]
+            + [f"genre_{i}" for i in range(19)]
+        )
+        return pd.read_csv(
+            f"{self.base}u.item",
+            sep="|",
+            names=cols,
+            encoding="latin-1",
+        )
+
     def load_all(self):
-        ratings = self.load_rating()
-        items = self.load_items()
-        return ratings, items
- 
+        return self.load_rating(), self.load_items()
